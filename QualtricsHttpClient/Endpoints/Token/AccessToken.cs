@@ -6,7 +6,6 @@ using System.Text;
 namespace QualtricsServiceHttpClient.Endpoints.Token;
 public sealed class AccessToken : Endpoint
 {
-    private  IEnumerable<KeyValuePair<string,string>> requestParams;
     private HttpResponseMessage _response;
     #region constructors
     public AccessToken(IServiceProvider serviceProvider): base(serviceProvider)

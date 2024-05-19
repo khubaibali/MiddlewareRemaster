@@ -13,11 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra-Cryptography", "Infra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra-DataAccess", "Infra-DataAccess\Infra-DataAccess.csproj", "{AA18F1B8-123C-4BBD-B96F-73F8D02AB1F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{F9A5DA31-C5F2-48D6-B8B7-20E3A06CE847}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connector", "Connector\Connector.csproj", "{10925A9C-6110-4707-A6C4-8D5B10549789}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QualtricsService", "QualtricsHttpClient\QualtricsService.csproj", "{EBDAE28E-E85D-4093-8CBD-CC88C3C23F0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QualtricsService", "QualtricsHttpClient\QualtricsService.csproj", "{EBDAE28E-E85D-4093-8CBD-CC88C3C23F0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +43,6 @@ Global
 		{AA18F1B8-123C-4BBD-B96F-73F8D02AB1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA18F1B8-123C-4BBD-B96F-73F8D02AB1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA18F1B8-123C-4BBD-B96F-73F8D02AB1F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F9A5DA31-C5F2-48D6-B8B7-20E3A06CE847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9A5DA31-C5F2-48D6-B8B7-20E3A06CE847}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F9A5DA31-C5F2-48D6-B8B7-20E3A06CE847}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9A5DA31-C5F2-48D6-B8B7-20E3A06CE847}.Release|Any CPU.Build.0 = Release|Any CPU
 		{10925A9C-6110-4707-A6C4-8D5B10549789}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10925A9C-6110-4707-A6C4-8D5B10549789}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10925A9C-6110-4707-A6C4-8D5B10549789}.Release|Any CPU.ActiveCfg = Release|Any CPU

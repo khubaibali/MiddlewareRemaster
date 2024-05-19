@@ -5,7 +5,6 @@ namespace QualtricsServiceHttpClient.Shared;
 public abstract class Endpoint
 {
     protected readonly QualtricsService _qualtricsService;
-    private IEnumerable<KeyValuePair<string, string>> requestParams;
     protected HttpResponseMessage _response;
     public StringBuilder uri { get; protected set; }
     #region Contructors
