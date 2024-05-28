@@ -10,11 +10,18 @@ namespace Domain.shared;
 public sealed class Email
 {
     public string Value { get; private set; }
+    #region Constructors
     public Email(string e)
     {
         Value = e;
     }
+    #endregion
 
+    #region Public Properties
+    public override string ToString()
+    {
+        return Value;
+    }
     public void EncryptEmail(ICrypto crypto)
     {
         crypto.Encrypt(Value);
@@ -25,5 +32,5 @@ public sealed class Email
         crypto.Decrypt(Value);
         Value = crypto.Decryption();
     }
-
+    #endregion
 }

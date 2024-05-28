@@ -20,7 +20,6 @@ public sealed class AccessToken : Endpoint
         var _content = new StringContent("");
         _content.Headers.ContentType = MediaTypeWithQualityHeaderValue.Parse("application/x-www-form-urlencoded");
         _response = await _qualtricsService.httpClient.PostAsync(uri.ToString(), _content);
-        this.AddDefaultHeader();
     }
     public override HttpResponseMessage Response()
     {

@@ -8,10 +8,10 @@ namespace QualtricsServiceHttpClient.Endpoints.Token;
 
 public record Token
 {
-    public string access_token { get; set; }
-    public string TokenType { get; set; }
-    public int ExpiresIn { get; set; }
-    public string Scope { get; set; }
-    public DateTime TokenReceiveDateTime { get; set; }
-    public string token { get; set; }
+    public string access_token { get; set; } = string.Empty;
+    public string TokenType { get; set; } = string.Empty;
+    public int ExpiresIn { get; set; } = 0;
+    public string Scope { get; set; } = string.Empty;
+    public DateTime TokenReceiveDateTime { get; set; } = DateTime.Now;
+    public string token { get; set; } = string.Empty;
 }

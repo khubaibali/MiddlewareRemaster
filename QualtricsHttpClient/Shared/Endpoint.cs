@@ -13,7 +13,7 @@ public abstract class Endpoint
         _qualtricsService = serviceProvider.GetRequiredService<QualtricsService>();
     }
     #endregion
-
+    
     #region Public Methods
     public void Paramertrize(IRequestParams requestParams)
     {

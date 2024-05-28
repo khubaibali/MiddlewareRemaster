@@ -8,11 +8,20 @@ namespace Domain;
 
 public sealed class AdapterMethod
 {
-    public Guid Id { get; private set; }
+    public Adapter Adapter { get; private set; }
+    public AdapterMethodId Id { get; private set; }
     public string Name { get; private set; }
-    public AdapterMethod(Guid id, string name)
+    public AdapterMethod(AdapterMethodId id, string name)
     {
         Id = id;
         Name = name;
+    }
+}
+public sealed class AdapterMethodId
+{
+    public Guid Id { get; private set; }
+    public AdapterMethodId()
+    {
+        Id = Guid.NewGuid();
     }
 }
