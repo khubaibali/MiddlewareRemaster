@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QualtricsServiceHttpClient;
 using QualtricsServiceHttpClient.Endpoints.Libraries;
 using QualtricsServiceHttpClient.Endpoints.Token;
 using QualtricsServiceHttpClient.Shared;
@@ -10,11 +11,11 @@ namespace Api.Controllers;
 [ApiController]
 public class Qualtrics : ControllerBase
 {
-    private readonly IServiceProvider serviceProvider;
+    private readonly QualtricsService serviceProvider;
 
-    public Qualtrics(IServiceProvider serviceProvider)
+    public Qualtrics(QualtricsService qualtricsService)
     {
-        this.serviceProvider = serviceProvider;
+        this.serviceProvider = qualtricsService;
     }
     [HttpPost("AccessToken")]
     public async Task<IActionResult> AccessToken(string clientId, string clientSecret)

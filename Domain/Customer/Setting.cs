@@ -11,9 +11,9 @@ public sealed class Setting : ICustomerSetting
     #region Contructors
     public Setting(Guid id, CustomerSettingType keyName, string value)
     {
-        Id = id;
-        KeyName = keyName;
-        Value = value;
+        //Id = id;
+        //KeyName = keyName;
+        //Value = value;
     }
     #endregion
 

@@ -1,9 +1,11 @@
+using Infra_ShortUuidService;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Abstractions;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.Resource;
 using QualtricsHttpClient.DependencyInjection;
+using Infra_DataAccess.DependencyInjection;
 
 namespace Api;
 
@@ -22,6 +24,9 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddQualtricsServiceDependency();
+        builder.Services.AddInfraShortUuidService();
+        builder.Services.AddInfraDataAccess();
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

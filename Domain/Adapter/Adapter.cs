@@ -3,38 +3,39 @@ namespace Domain;
 
 public sealed class Adapter
 {
-    public AdapterId Id { get; private set; }
+    public Guid Id { get; private set; }
     public string Name { get; private set; }
     public string Code { get; private set; }
+    public AdapterType Type { get; private set; }
     public List<AdapterMethod> Methods { get; private set; } = [];
     public List<AdapterParam> Params { get; private set; } = [];
     #region Contructors
-    public Adapter(AdapterId id, string name, string code)
+    private Adapter() { }
+    public Adapter(string name, string code,AdapterType type)
     {
-        Id = id;
         Name = name;
         Code = code;
+        Type = type;
     }
-    public Adapter(AdapterId id, string name, string code, IList<AdapterMethod> methods):this(id,name,code)
+    public Adapter(string name, string code, AdapterType type,IList<AdapterMethod> methods):this(name,code,type)
     {
         Methods = methods.ToList();
     }
-    public Adapter(AdapterId id, string name, string code, IList<AdapterParam> adapterparams):this(id, name, code)
+    public Adapter(string name, string code, AdapterType type, IList<AdapterParam> adapterparams):this(name, code, type)
     {
         Params = adapterparams.ToList();
     }
-    public Adapter(AdapterId id, string name, string code, IList<AdapterMethod> methods, IList<AdapterParam> adapterparams) : this(id, name, code)
+    public Adapter(string name, string code, AdapterType type, IList<AdapterMethod> methods, IList<AdapterParam> adapterparams) : this(name, code, type)
     {
         Methods = methods.ToList();
         Params = adapterparams.ToList();
     }
     #endregion
 }
-public sealed class AdapterId
-{
-    public Guid Id { get; private set; }
-    public AdapterId()
-    {
-        Id = Guid.NewGuid();
-    }
-}
+//public sealed class AdapterId
+//{
+//    public Guid Value { get; private set; } = Guid.NewGuid();
+//    public AdapterId() { }
+//    public AdapterId(Guid value) { this.Value = value; }
+    
+//}

@@ -14,10 +14,13 @@
     <PackageReference Include="Microsoft.Identity.Web.DownstreamApi" Version="2.15.2" />
     <PackageReference Include="Microsoft.Identity.Web.UI" Version="2.16.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\QualtricsHttpClient\QualtricsService.csproj" />
+    <ProjectReference Include="..\Infra-DataAccess\Infra-DataAccess.csproj" />
+    <ProjectReference Include="..\Infra-ShortUuidService\Infra-ShortUuidService.csproj" />
+    <ProjectReference Include="..\QualtricsHttpClient\Infra-QualtricsService.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,11 +7,11 @@ public sealed class GetLibraryMessage : Endpoint
 {   
     private readonly string _libraryId;
     private readonly string _messageId;
-    private GetLibraryMessage(IServiceProvider serviceProvider) : base(serviceProvider)
+    private GetLibraryMessage(QualtricsService serviceProvider) : base(serviceProvider)
     {
         this.uri = new StringBuilder("/API/v3/libraries");
     }
-    public GetLibraryMessage(IServiceProvider serviceProvider,string accessToken, string libraryId,string messageId) : this(serviceProvider)
+    public GetLibraryMessage(QualtricsService serviceProvider,string accessToken, string libraryId,string messageId) : this(serviceProvider)
     {
         _libraryId = libraryId;
         _messageId = messageId;

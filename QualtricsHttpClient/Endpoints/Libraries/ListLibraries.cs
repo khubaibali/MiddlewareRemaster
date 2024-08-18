@@ -9,11 +9,11 @@ namespace QualtricsServiceHttpClient.Endpoints.Libraries;
 
 public class ListLibraries : Endpoint
 {
-    public ListLibraries(IServiceProvider serviceProvider):base(serviceProvider)
+    public ListLibraries(QualtricsService serviceProvider):base(serviceProvider)
     {
         this.uri = new StringBuilder("/API/v3/libraries");
     }
-    public ListLibraries(IServiceProvider serviceProvider, string AccessToken) : this(serviceProvider)
+    public ListLibraries(QualtricsService serviceProvider, string AccessToken) : this(serviceProvider)
     {
         this._qualtricsService.AddAuthorization(AccessToken);
     }

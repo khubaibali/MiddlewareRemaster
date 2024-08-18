@@ -14,6 +14,7 @@ public sealed class Contact
     public Language Language { get; private set; }
     public DateTimeOffset SurveySendOn { get; private set; }
     public DateTimeOffset CreatedOn { get; private set; } = DateTime.UtcNow;
+    private Contact() { }
     public Contact(
             Customer customer,
             UniqueIdentifier uniqueIdentifier,

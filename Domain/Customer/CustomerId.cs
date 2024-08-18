@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Domain.shared.ShortId;
 namespace Domain;
 
 public sealed class CustomerId
@@ -18,5 +13,10 @@ public sealed class CustomerId
     public CustomerId(Guid id)
     {
         Id = id;
+    }
+
+    private void GetCustomerIdFromService(ISquid squidService)
+    {
+        squidService.SquidId();
     }
 }

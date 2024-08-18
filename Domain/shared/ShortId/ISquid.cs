@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infra_DataAccess.Configurations;
+namespace Domain.shared.ShortId;
 
-internal class AdapterMethodConfiguration
+public interface ISquid
 {
+
+    string SquidId();
+
 }

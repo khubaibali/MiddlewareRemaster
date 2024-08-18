@@ -11,6 +11,7 @@ public sealed class Email
 {
     public string Value { get; private set; }
     #region Constructors
+    private Email() { }
     public Email(string e)
     {
         Value = e;

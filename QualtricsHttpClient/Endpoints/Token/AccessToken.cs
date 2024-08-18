@@ -8,7 +8,7 @@ public sealed class AccessToken : Endpoint
 {
     private HttpResponseMessage _response;
     #region constructors
-    public AccessToken(IServiceProvider serviceProvider): base(serviceProvider)
+    public AccessToken(QualtricsService qualtricsService): base(qualtricsService)
     {
         uri = new StringBuilder("oauth2/token");
     }

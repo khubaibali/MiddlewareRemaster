@@ -8,9 +8,9 @@ public abstract class Endpoint
     protected HttpResponseMessage _response;
     public StringBuilder uri { get; protected set; }
     #region Contructors
-    protected Endpoint(IServiceProvider serviceProvider)
+    protected Endpoint(QualtricsService qualtricsService)
     {
-        _qualtricsService = serviceProvider.GetRequiredService<QualtricsService>();
+        _qualtricsService = qualtricsService;
     }
     #endregion
     
