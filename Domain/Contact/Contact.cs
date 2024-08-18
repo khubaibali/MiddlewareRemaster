@@ -12,6 +12,7 @@ public sealed class Contact
     public Email Email { get; private set; }
     public Mobile MobileNumber { get; private set; }
     public Language Language { get; private set; }
+    public List<FieldMapping> FieldMappings { get; private set; }
     public DateTimeOffset SurveySendOn { get; private set; }
     public DateTimeOffset CreatedOn { get; private set; } = DateTime.UtcNow;
     private Contact() { }

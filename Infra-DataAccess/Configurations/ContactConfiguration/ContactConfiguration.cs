@@ -34,5 +34,9 @@ internal sealed class ContactConfiguration : IEntityTypeConfiguration<Contact>
         builder
             .HasOne(prop => prop.Customer)
             .WithMany(x => x.Contacts);
+
+        builder
+            .OwnsMany(prop => prop.FieldMappings);
+
     }
 }
