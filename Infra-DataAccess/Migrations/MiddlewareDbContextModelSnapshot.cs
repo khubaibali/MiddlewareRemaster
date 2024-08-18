@@ -37,8 +37,9 @@ namespace Infra_DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -70,6 +71,38 @@ namespace Infra_DataAccess.Migrations
                     b.HasIndex("AdapterId");
 
                     b.ToTable("AdapterMethod");
+                });
+
+            modelBuilder.Entity("Domain.AdapterMethodParam", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DefaultValue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParamDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UIName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
+
+                    b.ToTable("AdapterMethodParam");
                 });
 
             modelBuilder.Entity("Domain.AdapterParam", b =>
@@ -151,6 +184,18 @@ namespace Infra_DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("CompanyGroup")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyPhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CustomerName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -172,6 +217,7 @@ namespace Infra_DataAccess.Migrations
             modelBuilder.Entity("Domain.CustomerAdapter", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("AdapterId")
@@ -185,8 +231,7 @@ namespace Infra_DataAccess.Migrations
                     b.Property<Guid?>("CustomerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id")
-                        .HasName("ID");
+                    b.HasKey("Id");
 
                     SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
 
@@ -203,6 +248,9 @@ namespace Infra_DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("AdapterParamId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("CustomerAdapterId")
                         .HasColumnType("uniqueidentifier");
 
@@ -211,6 +259,10 @@ namespace Infra_DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
+
+                    b.HasIndex("AdapterParamId");
 
                     b.HasIndex("CustomerAdapterId");
 
@@ -221,22 +273,24 @@ namespace Infra_DataAccess.Migrations
                 {
                     b.HasOne("Domain.Adapter", null)
                         .WithMany("Methods")
-                        .HasForeignKey("AdapterId");
+                        .HasForeignKey("AdapterId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Domain.AdapterParam", b =>
                 {
                     b.HasOne("Domain.Adapter", null)
                         .WithMany("Params")
-                        .HasForeignKey("AdapterId");
+                        .HasForeignKey("AdapterId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Domain.Contact", b =>
                 {
                     b.HasOne("Domain.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Contacts")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -251,23 +305,24 @@ namespace Infra_DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Customer", null)
-                        .WithMany()
-                        .HasForeignKey("CustomerId");
-
-                    b.HasOne("Domain.Customer", null)
                         .WithMany("CustomerAdapters")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Adapter");
                 });
 
             modelBuilder.Entity("Domain.CustomerAdapterParam", b =>
                 {
+                    b.HasOne("Domain.AdapterParam", null)
+                        .WithMany("CustomerAdapterParams")
+                        .HasForeignKey("AdapterParamId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("Domain.CustomerAdapter", null)
                         .WithMany("CustomerAdapterParams")
-                        .HasForeignKey("CustomerAdapterId");
+                        .HasForeignKey("CustomerAdapterId")
+                        .OnDelete(DeleteBehavior.NoAction);
                 });
 
             modelBuilder.Entity("Domain.Adapter", b =>
@@ -277,8 +332,15 @@ namespace Infra_DataAccess.Migrations
                     b.Navigation("Params");
                 });
 
+            modelBuilder.Entity("Domain.AdapterParam", b =>
+                {
+                    b.Navigation("CustomerAdapterParams");
+                });
+
             modelBuilder.Entity("Domain.Customer", b =>
                 {
+                    b.Navigation("Contacts");
+
                     b.Navigation("CustomerAdapters");
                 });
 

@@ -8,17 +8,19 @@ public class CustomerAdapterConfiguration : IEntityTypeConfiguration<CustomerAda
 {
     public void Configure(EntityTypeBuilder<CustomerAdapter> builder)
     {
-        builder.HasKey(x => x.Id)
-            .IsClustered(false)
-            .HasName("ID");
+        builder
+            .HasKey(x => x.Id)
+            .IsClustered(false);
 
-        builder.Property(x => x.CustomerAdapterName)
+        builder
+            .Property(x => x.CustomerAdapterName)
             .IsRequired(true)
             .HasMaxLength(50);
 
+        builder.HasMany(prop => prop.CustomerAdapterParams)
+            .WithOne()
+            .HasForeignKey("CustomerAdapterId")
+            .OnDelete(DeleteBehavior.NoAction);
 
-        builder.HasOne<Customer>()
-            .WithMany(x => x.CustomerAdapters)
-            .HasForeignKey(x => x.Id);
     }
 }

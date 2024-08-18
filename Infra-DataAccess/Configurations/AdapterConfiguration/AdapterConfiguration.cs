@@ -21,13 +21,26 @@ internal sealed class AdapterConfiguration : IEntityTypeConfiguration<Adapter>
             .HasMaxLength(100);
 
         builder
+            .Property(prop => prop.Type)
+            .IsRequired()
+            .HasConversion(
+                prop => nameof(prop),
+                  val => Enum.Parse<AdapterType>(val,true));
+
+        builder
             .HasIndex(c => new { c.Name, c.Code })
             .IsUnique(true);
 
         builder
-            .HasMany(a => a.Methods);
+            .HasMany(a => a.Methods)
+            .WithOne()
+            .HasForeignKey("AdapterId")
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder
-            .HasMany(a => a.Params);
+            .HasMany(a => a.Params)
+            .WithOne()
+            .HasForeignKey("AdapterId")
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

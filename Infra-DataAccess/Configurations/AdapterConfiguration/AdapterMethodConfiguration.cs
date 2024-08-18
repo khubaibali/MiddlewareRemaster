@@ -8,15 +8,20 @@ public class AdapterMethodConfiguration : IEntityTypeConfiguration<AdapterMethod
 {
     public void Configure(EntityTypeBuilder<AdapterMethod> builder)
     {
-        builder.HasKey(m=> m.Id)
+        builder
+            .HasKey(m=> m.Id)
             .IsClustered(false);
 
-        builder.Property(x => x.Id)
+        builder
+            .Property(x => x.Id)
             .HasConversion(v => v.Id,
             v => new AdapterMethodId(v));
 
-        builder.Property(x => x.Name)
+        builder
+            .Property(x => x.Name)
             .IsRequired()
             .HasMaxLength(50);
+
+        
     }
 }

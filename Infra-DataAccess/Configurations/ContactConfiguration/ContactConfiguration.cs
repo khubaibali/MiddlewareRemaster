@@ -2,7 +2,7 @@
 using Domain.shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-namespace Infra_DataAccess.Configurations;
+namespace Infra_DataAccess.Configurations.ContactConfiguration;
 internal sealed class ContactConfiguration : IEntityTypeConfiguration<Contact>
 {
     public void Configure(EntityTypeBuilder<Contact> builder)
@@ -17,15 +17,22 @@ internal sealed class ContactConfiguration : IEntityTypeConfiguration<Contact>
 
         builder
             .Property(c => c.UniqueIdentifier)
-            .HasConversion(x => x.Value,x => new UniqueIdentifier(x));
+            .HasConversion(x => x.Value, x => new UniqueIdentifier(x));
 
-        builder.Property(c => c.Email)
+        builder
+            .Property(c => c.Email)
             .HasConversion(x => x.Value, x => new Email(x));
 
-        builder.Property(c => c.Language)
+        builder
+            .Property(c => c.Language)
             .HasConversion(x => x.Value, x => new Language(x));
 
-        builder.Property(c => c.MobileNumber)
-            .HasConversion(x => x.Number, x => new (x));
+        builder
+            .Property(c => c.MobileNumber)
+            .HasConversion(x => x.Number, x => new(x));
+
+        builder
+            .HasOne(prop => prop.Customer)
+            .WithMany(x => x.Contacts);
     }
 }

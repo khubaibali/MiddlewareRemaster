@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infra_DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class first : Migration
+    public partial class firstinitial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,7 @@ namespace Infra_DataAccess.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false)
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,11 +27,31 @@ namespace Infra_DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AdapterMethodParam",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UIName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ParamDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DefaultValue = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsRequired = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdapterMethodParam", x => x.Id)
+                        .Annotation("SqlServer:Clustered", false);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Customer",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CustomerName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CompanyGroup = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CompanyPhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsOnPremise = table.Column<bool>(type: "bit", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -57,7 +77,8 @@ namespace Infra_DataAccess.Migrations
                         name: "FK_AdapterMethod_Adapter_AdapterId",
                         column: x => x.AdapterId,
                         principalTable: "Adapter",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -78,7 +99,8 @@ namespace Infra_DataAccess.Migrations
                         name: "FK_AdapterParam_Adapter_AdapterId",
                         column: x => x.AdapterId,
                         principalTable: "Adapter",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -103,8 +125,7 @@ namespace Infra_DataAccess.Migrations
                         name: "FK_Contact_Customer_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -118,7 +139,7 @@ namespace Infra_DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("ID", x => x.Id)
+                    table.PrimaryKey("PK_CustomerAdapter", x => x.Id)
                         .Annotation("SqlServer:Clustered", false);
                     table.ForeignKey(
                         name: "FK_CustomerAdapter_Adapter_AdapterId",
@@ -131,12 +152,6 @@ namespace Infra_DataAccess.Migrations
                         column: x => x.CustomerId,
                         principalTable: "Customer",
                         principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_CustomerAdapter_Customer_Id",
-                        column: x => x.Id,
-                        principalTable: "Customer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -145,11 +160,19 @@ namespace Infra_DataAccess.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdapterParamId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CustomerAdapterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CustomerAdapterParam", x => x.Id);
+                    table.PrimaryKey("PK_CustomerAdapterParam", x => x.Id)
+                        .Annotation("SqlServer:Clustered", false);
+                    table.ForeignKey(
+                        name: "FK_CustomerAdapterParam_AdapterParam_AdapterParamId",
+                        column: x => x.AdapterParamId,
+                        principalTable: "AdapterParam",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CustomerAdapterParam_CustomerAdapter_CustomerAdapterId",
                         column: x => x.CustomerAdapterId,
@@ -189,6 +212,11 @@ namespace Infra_DataAccess.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CustomerAdapterParam_AdapterParamId",
+                table: "CustomerAdapterParam",
+                column: "AdapterParamId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CustomerAdapterParam_CustomerAdapterId",
                 table: "CustomerAdapterParam",
                 column: "CustomerAdapterId");
@@ -201,13 +229,16 @@ namespace Infra_DataAccess.Migrations
                 name: "AdapterMethod");
 
             migrationBuilder.DropTable(
-                name: "AdapterParam");
+                name: "AdapterMethodParam");
 
             migrationBuilder.DropTable(
                 name: "Contact");
 
             migrationBuilder.DropTable(
                 name: "CustomerAdapterParam");
+
+            migrationBuilder.DropTable(
+                name: "AdapterParam");
 
             migrationBuilder.DropTable(
                 name: "CustomerAdapter");

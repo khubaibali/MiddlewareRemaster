@@ -20,5 +20,9 @@ public class AdapterParamConfiguration : IEntityTypeConfiguration<AdapterParam>
 
         builder.Property(x => x.IsRequired);
 
+        builder.HasMany(prop => prop.CustomerAdapterParams)
+            .WithOne()
+            .HasForeignKey("AdapterParamId")
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
