@@ -9,6 +9,7 @@ public sealed class Customer
     public string CompanyPhoneNumber { get; private set;}
     public bool IsOnPremise { get; private set; }
     public bool IsActive { get; private set; }
+    public List<Task> Tasks { get; private set; } = [];
     public List<CustomerAdapter> CustomerAdapters { get; private set; } = [];
     public List<Contact> Contacts { get; private set; } = []; 
     private Customer() { }

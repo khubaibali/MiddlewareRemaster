@@ -1,6 +1,8 @@
 ﻿
+using Domain.Interface.Repository;
 using Domain.shared.ShortId;
 using Infra_DataAccess.DbContexts;
+using Infra_DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,7 +16,11 @@ public static class DependencyInjection
         services.AddDbContext<MiddlewareDbContext>(options =>
         options.UseSqlServer("Server=localhost;Database=Q2sTest;Trusted_Connection=True;TrustServerCertificate=True")
         );
-            
+
+        #region repositories
+        services.AddScoped<ICustomerRepo, CustomerRepository>();
+        #endregion
+
         return services;
     }
 }
