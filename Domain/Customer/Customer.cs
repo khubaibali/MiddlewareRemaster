@@ -10,7 +10,7 @@ public sealed class Customer
     public bool IsOnPremise { get; private set; }
     public bool IsActive { get; private set; }
     public List<CustomerAdapter> CustomerAdapters { get; private set; } = [];
-    public List<Contact> Contacts { get; private set; } = [];
+    public List<Contact> Contacts { get; private set; } = []; 
     private Customer() { }
     public Customer(string customerName,bool isOnPremise,bool isActive)
     {
