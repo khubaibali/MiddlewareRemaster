@@ -5,21 +5,17 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{19503ED0-7370-4AA7-8A81-DABE71B2A0EC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adapters", "Adapters\Adapters.csproj", "{E9B24DDC-5302-4549-870F-6117DEF1DE98}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{52C37221-D1C9-4862-8AEE-40975B77D948}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra-Cryptography", "Infra-Cryptography\Infra-Cryptography.csproj", "{4FFA91D1-5D7F-4D8A-9E48-B84155DCC0F5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra-DataAccess", "Infra-DataAccess\Infra-DataAccess.csproj", "{AA18F1B8-123C-4BBD-B96F-73F8D02AB1F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connector", "Connector\Connector.csproj", "{10925A9C-6110-4707-A6C4-8D5B10549789}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra-QualtricsService", "QualtricsHttpClient\Infra-QualtricsService.csproj", "{EBDAE28E-E85D-4093-8CBD-CC88C3C23F0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra-ShortUuidService", "Infra-ShortUuidService\Infra-ShortUuidService.csproj", "{F3C1710C-1FF4-4391-80E6-835E2A0DB7E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra-ShortUuidService", "Infra-ShortUuidService\Infra-ShortUuidService.csproj", "{F3C1710C-1FF4-4391-80E6-835E2A0DB7E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application-UseCase", "Application-UseCase\Application-UseCase.csproj", "{05BD92CF-C639-48A3-9F3B-D2E259A78791}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application-UseCase", "Application-UseCase\Application-UseCase.csproj", "{05BD92CF-C639-48A3-9F3B-D2E259A78791}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +27,6 @@ Global
 		{19503ED0-7370-4AA7-8A81-DABE71B2A0EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19503ED0-7370-4AA7-8A81-DABE71B2A0EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19503ED0-7370-4AA7-8A81-DABE71B2A0EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9B24DDC-5302-4549-870F-6117DEF1DE98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9B24DDC-5302-4549-870F-6117DEF1DE98}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9B24DDC-5302-4549-870F-6117DEF1DE98}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9B24DDC-5302-4549-870F-6117DEF1DE98}.Release|Any CPU.Build.0 = Release|Any CPU
 		{52C37221-D1C9-4862-8AEE-40975B77D948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{52C37221-D1C9-4862-8AEE-40975B77D948}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52C37221-D1C9-4862-8AEE-40975B77D948}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,10 +39,6 @@ Global
 		{AA18F1B8-123C-4BBD-B96F-73F8D02AB1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA18F1B8-123C-4BBD-B96F-73F8D02AB1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA18F1B8-123C-4BBD-B96F-73F8D02AB1F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10925A9C-6110-4707-A6C4-8D5B10549789}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10925A9C-6110-4707-A6C4-8D5B10549789}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10925A9C-6110-4707-A6C4-8D5B10549789}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10925A9C-6110-4707-A6C4-8D5B10549789}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EBDAE28E-E85D-4093-8CBD-CC88C3C23F0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EBDAE28E-E85D-4093-8CBD-CC88C3C23F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBDAE28E-E85D-4093-8CBD-CC88C3C23F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU

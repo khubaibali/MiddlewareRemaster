@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application-UseCase\Application-UseCase.csproj" />
     <ProjectReference Include="..\Infra-DataAccess\Infra-DataAccess.csproj" />
     <ProjectReference Include="..\Infra-ShortUuidService\Infra-ShortUuidService.csproj" />
     <ProjectReference Include="..\QualtricsHttpClient\Infra-QualtricsService.csproj" />

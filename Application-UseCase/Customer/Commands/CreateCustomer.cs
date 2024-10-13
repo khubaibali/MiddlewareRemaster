@@ -1,5 +1,7 @@
 ﻿using Application_UseCase.DTOs;
+using Domain;
 using Domain.Interface.Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +13,17 @@ namespace Application_UseCase.Customer.Commands;
 public sealed class CreateCustomer
 {
     private readonly ICustomerRepo _customerRepo;
+    private readonly DbContext _dbContext;
 
-    public CreateCustomer(ICustomerRepo customerRepo)
+    public CreateCustomer(DbContext dbcontext,ICustomerRepo customerRepo)
     {
         _customerRepo = customerRepo;
+        _dbContext = dbcontext;
     }
 
-    public CreateCustomer(CreateCustomerDto dto) 
+    public void Execute(CreateCustomerDto customerDto)
     {
-        var customer = new Domain.Customer(dto.name,dto.isOnPremise,true);
-        
+        var customer = new Domain.Customer(customerDto.name,customerDto.companyGroup, customerDto.companyGroup, customerDto.isOnPremise,true);
+        _dbContext.AddAsync(customer);
     }
-
-
 }
