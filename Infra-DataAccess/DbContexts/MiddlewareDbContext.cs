@@ -1,20 +1,21 @@
 ﻿using Domain;
-using Infra_DataAccess.Configurations;
-using Infra_DataAccess.Configurations.CustomerConfiguration;
+using Domain.Gateways;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Infra_DataAccess.DbContexts;
 
 public partial class MiddlewareDbContext(DbContextOptions<MiddlewareDbContext> options) : DbContext(options)
 {
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<QualtricsGateway> Qualtrics { get; set; } 
+    public DbSet<Contact> Contacts { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AdapterConfiguration).Assembly);
-        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(AdapterMethodConfiguration).Assembly);
-        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(AdapterParamConfiguration).Assembly);
-        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(CustomerConfiguration).Assembly);
-        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(CustomerAdapterConfiguration).Assembly);
-        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(ContactConfiguration).Assembly);
-
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        modelBuilder.Entity<Gateway>()
+            .UseTpcMappingStrategy();
+        modelBuilder.Entity<QualtricsGateway>()
+            .ToTable("QualtricsGateway");
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Gateways;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,7 @@ public abstract class Template
     public TemplateId Id { get; set; } = new TemplateId();
     public string Name { get; private set; }
     public string Description { get; private set; }
-    public TemplateType Type { get; set; }
-    
-    private Template() { }
+    public ICollection<Gateway> Gateways { get; private set; } = [];
 
 }
 

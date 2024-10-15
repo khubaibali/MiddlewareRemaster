@@ -1,4 +1,7 @@
-﻿namespace Domain;
+﻿using Domain.Gateways;
+using Domain.TaskTemplate;
+
+namespace Domain;
 
 public sealed class Customer
 {
@@ -10,8 +13,9 @@ public sealed class Customer
     public bool IsOnPremise { get; private set; }
     public bool IsActive { get; private set; }
     //public List<Task> Tasks { get; private set; } = [];
-    public List<CustomerAdapter> CustomerAdapters { get; private set; } = [];
-    public List<Contact> Contacts { get; private set; } = []; 
+    public ICollection<Gateway> Gateways { get; private set; } = [];
+    public ICollection<Contact> Contacts { get; private set; } = []; 
+    public ICollection<Template> Templates { get; private set; } = [];
     private Customer() { }
     public Customer(string customerName,string companyName,string companyGroup,bool isOnPremise,bool isActive)
     {
@@ -21,12 +25,5 @@ public sealed class Customer
         IsActive = isActive;
         IsOnPremise = isOnPremise;
     }
-    public Customer(string customerName, string companyName, string companyGroup, bool isOnPremise, bool isActive, IList<CustomerAdapter> customerAdapters):this(customerName,companyName,companyGroup, isOnPremise, isActive) 
-    {
-        CustomerAdapters = customerAdapters.ToList();
-    }
-    public void AddCustomerAdapter(CustomerAdapter customerAdapter) 
-    { 
-        CustomerAdapters.Add(customerAdapter); 
-    }
+    
 }

@@ -14,7 +14,7 @@ public static class DependencyInjection
     public static IServiceCollection AddInfraDataAccess(this IServiceCollection services)
     {
         services.AddDbContext<MiddlewareDbContext>(options =>
-        options.UseSqlServer("Server=localhost;Database=Q2sTest;Trusted_Connection=True;TrustServerCertificate=True")
+        options.UseSqlServer("Server=localhost;Database=practice;Trusted_Connection=True;TrustServerCertificate=True")
         );
 
         #region repositories

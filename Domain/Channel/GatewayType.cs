@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain;
 
-public enum AdapterType
+public enum GatewayType
 {
     SMPP,
     FILESHARING,

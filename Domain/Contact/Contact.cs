@@ -1,12 +1,11 @@
-﻿using Domain.NMFLoId;
-using Domain.shared;
+﻿using Domain.shared;
 using Domain.shared.Cryptography;
 namespace Domain;
 
 public sealed class Contact
 {
     public UniqueIdentifier UniqueIdentifier { get; private set; }
-    public NmfloId NMFLoId { get; private set; }
+    public Guid Token { get; private set; }
     public Customer Customer { get; private set; }
     public bool IsSubscribed { get; private set; }
     public Email Email { get; private set; }
@@ -19,13 +18,13 @@ public sealed class Contact
     public Contact(
             Customer customer,
             UniqueIdentifier uniqueIdentifier,
-            NmfloId id,
+            Guid token,
             Email email,
             Mobile mobileNumber)
     {
         UniqueIdentifier = uniqueIdentifier;
         Customer = customer;
-        NMFLoId = id;
+        Token = token;
         Email = email;
         MobileNumber = mobileNumber;
     }
