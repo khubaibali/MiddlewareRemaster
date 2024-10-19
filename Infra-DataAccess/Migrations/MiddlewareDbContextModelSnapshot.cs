@@ -62,7 +62,7 @@ namespace Infra_DataAccess.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Customer", b =>
@@ -95,7 +95,7 @@ namespace Infra_DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Gateways.Gateway", b =>
@@ -142,7 +142,7 @@ namespace Infra_DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsMany("Domain.FieldMapping", "FieldMappings", b1 =>
+                    b.OwnsMany("Domain.Contact.FieldMappings#Domain.FieldMapping", "FieldMappings", b1 =>
                         {
                             b1.Property<Guid>("ContactToken")
                                 .HasColumnType("uniqueidentifier");
@@ -166,7 +166,7 @@ namespace Infra_DataAccess.Migrations
 
                             b1.HasKey("ContactToken", "Id");
 
-                            b1.ToTable("FieldMapping");
+                            b1.ToTable("FieldMapping", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("ContactToken");

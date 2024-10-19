@@ -9,13 +9,11 @@ public sealed class GetLibraryMessage : Endpoint
     private readonly string _messageId;
     private GetLibraryMessage(QualtricsService serviceProvider) : base(serviceProvider)
     {
-        this.uri = new StringBuilder("/API/v3/libraries");
+        this.uri = new StringBuilder("/API/v3/libraries/{0}/messages/{1}");
     }
     public GetLibraryMessage(QualtricsService serviceProvider,string accessToken, string libraryId,string messageId) : this(serviceProvider)
     {
-        _libraryId = libraryId;
-        _messageId = messageId;
-        _appendUri();
+        this.uri = this.uri.AppendFormat(this.uri.ToString(), libraryId, messageId);
         this._qualtricsService.AddAuthorization(accessToken);
     }
 
@@ -30,9 +28,6 @@ public sealed class GetLibraryMessage : Endpoint
     }
 
     #region Private Methods
-    private void _appendUri()
-    {
-        this.uri.Append($"/{this._libraryId}/messages/{this._messageId}");
-    }
+    
     #endregion
 }

@@ -1,5 +1,7 @@
 ﻿using Domain;
 using Domain.Gateways;
+using Domain.TaskTemplate;
+using Domain.TaskTemplate.Templates;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -17,5 +19,11 @@ public partial class MiddlewareDbContext(DbContextOptions<MiddlewareDbContext> o
             .UseTpcMappingStrategy();
         modelBuilder.Entity<QualtricsGateway>()
             .ToTable("QualtricsGateway");
+
+        modelBuilder.Entity<Template>()
+            .UseTpcMappingStrategy();
+
+        modelBuilder.Entity<SurveyProcessOnprem>()
+            .ToTable("SurveyProcessOnPrem");
     }
 }
